@@ -1,0 +1,31 @@
+[tool.poetry]
+name = "blap"
+version = "0.1.10"
+description = "For Penultimate Layer Support"
+authors = ["Constantin <tino122001@googlemail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.9"
+pandas = "^2.0.3"
+jupyter = "^1.0.0"
+openpyxl = "^3.1.2"
+llvmlite = "^0.40.1"
+numba = "^0.57.1"
+torchlibrosa = "^0.1.0"
+h5py = "^3.9.0"
+deepdiff = "^6.3.1"
+pytest = "^7.4.0"
+setuptools = "^68.1.2"
+wandb = "^0.15.8"
+matplotlib = "^3.7.2"
+transformers = "^4.33.1"
+torchaudio = "^2.0.2"
+pytorch-lightning = "^2.0.9"
+spacy = "^3.7.1"
+python-dotenv = "^1.0.0"
+bert-score = "^0.3.13"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
