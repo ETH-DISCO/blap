@@ -50,8 +50,3 @@ with torch.no_grad():
 # Print the generated caption
 print("Generated Caption:", output[0])
 ```
-### Copyright
-
-
-## Unit Tests
-To run the unit-tests, replace `./tests/data` with with [Data](https://drive.google.com/file/d/1Fioi1fAHV-XZ3B3-WI7lXiExLjITP-ss/view?usp=sharing).
