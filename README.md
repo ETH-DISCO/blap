@@ -1,5 +1,15 @@
-# BLAP
-Bootstrapping Language-Audio Pre-Training for Uniﬁed Audio-Language Understanding and Generation.
+# About BLAP
+We introduce BLAP, a model capable of generating high-quality captions for music. BLAP leverages a fine-tuned CLAP audio encoder and a pre-trained Flan-T5 large language model. To achieve effective cross-modal alignment between music and language, BLAP utilizes a Querying Transformer, allowing us to obtain state-of-the-art performance using 6x less data compared to previous models.
+This is a critical consideration given the scarcity of descriptive music data and the subjective nature of music interpretation. 
+We provide qualitative examples demonstrating BLAP's ability to produce realistic captions for music, and perform a quantitative evaluation on three datasets.
+BLAP achieves a relative improvement on FENSE compared to previous models of 3.5\%, 6.5\%, and 7.5\% on the MusicCaps, Song Describer, and YouTube8m-MTC datasets, respectively.
+We open-source the code and model weights in order to contribute to the broader accessibility and advancement of the music captioning field.
+
+### Model Setup
+<div style="text-align: center;">
+  <img src="figs/stage2_updated.jpg" alt="Centered Image">
+</div>
+
 
 ## Getting Started
 We use [Poetry](https://python-poetry.org/) to organize python libraries.
@@ -7,6 +17,9 @@ We use [Poetry](https://python-poetry.org/) to organize python libraries.
 To install all the dependencies run `poetry install` in the main directory.
 
 ## Get The Model
+
+You can find the checkpoint of our model on [Huggingface](https://huggingface.co/Tino3141/blap/tree/main).
+
 
 ## Run The Model
 Loading the Model
@@ -50,3 +63,5 @@ with torch.no_grad():
 # Print the generated caption
 print("Generated Caption:", output[0])
 ```
+
+
