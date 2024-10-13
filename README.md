@@ -10,15 +10,17 @@ We open-source the code and model weights in order to contribute to the broader 
   <img src="figs/stage2_updated.jpg" alt="Centered Image">
 </div>
 
+## System Requirements
+* Python version: 3.12
 
 ## Getting Started
-We use [Poetry](https://python-poetry.org/) to organize python libraries.
+We use [Poetry](https://python-poetry.org/) to manage the python libraries.
 
 To install all the dependencies run `poetry install` in the main directory.
 
 ## Get The Model
 
-You can find the checkpoint of our model on [Huggingface](https://huggingface.co/Tino3141/blap/tree/main).
+You can find the checkpoint and configuration file of our model on [Huggingface](https://huggingface.co/Tino3141/blap/tree/main).
 
 
 ## Run The Model
@@ -30,11 +32,11 @@ To load the BLAP2 Stage 2 model, you will need the checkpoint path and model con
 from blap.model.BLAP2.BLAP2_Pretrain import BLAP2_Stage2
 
 ckpt_path = "path/to/your/checkpoint.ckpt"
-model_path = "path/to/your/model/config.json"
+modelConfig_path = "path/to/your/model/config.json"
 
 blap_model = BLAP2_Stage2.from_checkpoint(
     checkpoint_path=ckpt_path,
-    modelConfig=model_path,
+    modelConfig=modelConfig_path,
 )
 ```
 
@@ -63,5 +65,3 @@ with torch.no_grad():
 # Print the generated caption
 print("Generated Caption:", output[0])
 ```
-
-

@@ -27,6 +27,7 @@ python-dotenv = "^1.0.0"
 bert-score = "^0.3.13"
 numpy = "^2.0.1"
 torchvision = "^0.19.0"
+debugpy = "^1.8.7"
 
 [build-system]
 requires = ["poetry-core"]
