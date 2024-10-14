@@ -1,3 +1,8 @@
+"""
+REMAKRKS:
+This file contains the model BLAP2. It is highly inspired by the BLIP2 model and therefore contains code snippets from BLIP2's implementation (GitHub: https://github.com/salesforce/LAVIS/tree/main/projects/blip2)
+"""
+
 import logging
 from transformers import Blip2QFormerConfig, Blip2QFormerModel, BertTokenizer, BertConfig
 import torch
@@ -160,7 +165,6 @@ class BLAP2_Stage1(BLAP2_Base):
         self.qformer, self.query_tokens = self.initQformer(config.num_query_tokens, config.audio_encoder.embed_dim_audio)
         self.qformer.resize_token_embeddings(len(self.tokenizer))
 
-        # TODO Do not fully understand this part yet
         state_dict = self.qformer.state_dict()
         for name, param in self.qformer.named_parameters():
             if "_query" in name:
@@ -543,8 +547,7 @@ class BLAP2_Stage1(BLAP2_Base):
 
     def validation_step(self, batch, batch_idx):
         audio, caption = batch
-        # TODO remove debugging print out
-        print(f"Validating Batch {batch_idx}")
+
         loss: BlapOutput = self(audio, caption)
         
         # Logging
@@ -558,26 +561,6 @@ class BLAP2_Stage1(BLAP2_Base):
         avg_atc = np.stack([x['loss_atc_val'] for x in self.validation_step_outputs]).mean()
         avg_atm = np.stack([x['loss_atm_val'] for x in self.validation_step_outputs]).mean()
         avg_lm = np.stack([x['loss_lm_val'] for x in self.validation_step_outputs]).mean()
-        # TODO remove debugging print out
-        print(len(self.validation_step_outputs))
-
-        # Qualitative Assesment of Data 
-        # if len(self.qualitativeTestingSamples) > 0 : 
-        #     audioToEval = torch.zeros((len(self.qualitativeTestingSamples), 480000))
-        #     correspondingCaptions = []
-        #     for i, audioCaptionTuple in enumerate(self.audios):
-        #         data, _ = sf.read(audioCaptionTuple[0])
-        #         assert len(data) == 480000, "Audios must have length of 480000"
-        #         audioToEval[i] = data
-        #         correspondingCaptions.append(audioCaptionTuple[1])
-            
-        #     # Forward it through the work
-        #     output: BlapOutput = self(audioToEval, correspondingCaptions)
-        #     intermediate = output.intermediate_output
-
-        #     # Write to file
-        #     # Hard coded file for embeddings + logits of atm
-            
 
         self.log('avg_atc', avg_atc, sync_dist=True)
         self.log('avg_atm', avg_atm, sync_dist=True)
@@ -630,7 +613,6 @@ class BLAP2_Stage2(BLAP2_Base):
         if config.qTokens != "":
             self.query_tokens = torch.load(config.qTokens)
 
-        # TODO explanation 
         self.qformer.cls = None
         self.qformer.bert.embeddings.word_embeddings = None
         self.qformer.bert.embeddings.position_embeddings = None
@@ -653,7 +635,6 @@ class BLAP2_Stage2(BLAP2_Base):
 
         for name, param in self.t5_model.named_parameters():
             param.requires_grad = False
-            #param.data = param.data.bfloat16() # TODO cast datatype to bfloat16 to achieve larger batch size
 
         self.t5_proj = nn.Linear(
             self.qformer.config.hidden_size, self.t5_model.config.hidden_size
