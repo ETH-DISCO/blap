@@ -28,7 +28,11 @@ from blap.model.AudioEncoder import AudioEncoder
 from blap.model.AudioEncoder import Projection
 
 # Lavis Utilities
-
+"""
+The following functions are based on the BLIP2 implementation by Salesforce.
+Copyright (c) 2022 Salesforce, Inc.
+All rights reserved.
+"""
 def is_dist_avail_and_initialized():
     if not dist.is_available():
         return False
@@ -301,7 +305,11 @@ class BLAP2_Stage1(BLAP2_Base):
 
         return text_feat
 
-
+    """
+    Function is based on salesforce's implementation of the BLIP2 model
+    Copyright (c) 2022 Salesforce, Inc.
+    All rights reserved.
+    """
     # only provides the loss for training
     def forward(self, audios, captions, device=None):
         # Get Audio Embeddings
@@ -690,6 +698,11 @@ class BLAP2_Stage2(BLAP2_Base):
             processed_captions.append(modified_caption.strip())
         return processed_captions
 
+    """
+    Function is based on salesforce's implementation of the BLIP2 model
+    Copyright (c) 2022 Salesforce, Inc.
+    All rights reserved.
+    """
     def forward(self, audios, captions, device=None, qualitative_testing=True):
         
         device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
