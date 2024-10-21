@@ -1,3 +1,7 @@
+"""
+Copyright Laion-AI
+https://github.com/LAION-AI/CLAP/
+"""
 import torch
 import torch.nn as nn
 import torch.nn.functional as F

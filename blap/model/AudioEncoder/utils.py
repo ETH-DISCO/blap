@@ -1,3 +1,7 @@
+"""
+Copyright Laion-AI
+https://github.com/LAION-AI/CLAP/
+"""
 import numpy as np
 import torch
 from torch import nn as nn

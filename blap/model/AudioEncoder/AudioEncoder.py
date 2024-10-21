@@ -1,3 +1,7 @@
+"""
+Copyright Laion-AI
+https://github.com/LAION-AI/CLAP/
+"""
 import logging
 from blap.model.AudioEncoder.acnn import get_audio_encoder
 from blap.model.AudioEncoder.htsat import create_htsat_model
@@ -18,26 +22,6 @@ class Projection(nn.Module):
         embed2 = self.drop(self.linear2(F.gelu(embed1)))
         embeds = self.layer_norm(embed1 + embed2)
         return embeds
-
-# class AudioEncoder(nn.Module):
-#     def __init__(self, audioenc_name:str, d_in: int, d_out: int, sample_rate: int, window_size: int,
-#             hop_size: int, mel_bins: int, fmin: int, fmax: int, classes_num: int) -> None:
-#         super().__init__()
-
-#         audio_encoder = get_audio_encoder(audioenc_name)
-
-#         self.base = audio_encoder(
-#             sample_rate, window_size,
-#             hop_size, mel_bins, fmin, fmax,
-#             classes_num, d_in)
-
-#         self.projection = Projection(d_in, d_out)
-
-#     def forward(self, x):
-#         out_dict = self.base(x)
-#         audio_features, audio_classification_output = out_dict['embedding'], out_dict['clipwise_output']
-#         projected_vec = self.projection(audio_features)
-#         return projected_vec, audio_classification_output
 
 class AudioEncoder(torch.nn.Module):
 
