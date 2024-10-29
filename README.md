@@ -1,6 +1,6 @@
 # BLAP: Bootstrapping Language-Audio Pre-training for Music Captioning
 
-### Model Setup
+### Model Setup | [📜Paper](https://openreview.net/forum?id=23LTPLTB88)
 <div style="text-align: center;">
   <img src="figs/stage2_updated.jpg" alt="Centered Image">
 </div>
